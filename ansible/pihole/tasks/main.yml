@@ -1,0 +1,41 @@
+---
+- name: clone pi-hole | git
+  git:
+    repo: "https://github.com/pi-hole/pi-hole.git"
+    dest: /tmp/pi-hole
+    update: yes
+    force: yes
+
+- name: copy configuration
+  copy:
+    src: templates/basic-install.sh
+    dest: /tmp/pi-hole/automated install/basic-install.sh
+    mode: 0644
+
+- name: run modified unattended installer
+  become: yes
+  become_user: root
+  shell: bash '/tmp/pi-hole/automated install/basic-install.sh'
+
+- name: get password
+  shell: /bin/cat /tmp/pi-hole/password
+  register: password
+  ignore_errors: yes
+
+#- name: clean up password
+#  file:
+#    path: /tmp/pi-hole/password
+#    state: absent
+
+- name: set cron jobs
+  become: yes
+  become_user: root
+  cron:
+    name: "daily updater"
+    user: "www-data"
+    minute: "0"
+    hour: "0"
+    job: "/usr/local/bin/pihole -up"
+
+- debug:
+    msg: "Your password is {{ password.stdout_lines }}"
