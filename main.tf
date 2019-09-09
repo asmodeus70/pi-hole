@@ -41,12 +41,12 @@ module "ec2" {
 }
 
 resource "aws_eip" "eip" {
-  vpc           = true
+  vpc = true
 }
 
 resource "aws_eip_association" "eip-asoc" {
-  instance_id      = module.ec2.instance_id
-  allocation_id    = aws_eip.id
+  instance_id   = module.ec2.instance_id
+  allocation_id = aws_eip.id
 
 }
 

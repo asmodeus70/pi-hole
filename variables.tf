@@ -28,7 +28,7 @@ variable "env" {
 }
 
 variable "Patch_Group" {
-  default = "Ubuntu18"
+  default     = "Ubuntu18"
   description = "This can be used for AWS SSM"
 }
 
