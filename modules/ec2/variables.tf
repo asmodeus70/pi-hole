@@ -1,6 +1,6 @@
 variable "instance_type" {
-  default         = "t2.nano"
-  description     = "Instance type"
+  default     = "t2.nano"
+  description = "Instance type"
 }
 
 variable "key_name" {
@@ -32,7 +32,7 @@ variable "Patch_Group" {
 }
 
 variable "iam_profile" {
-  default = "AmazonSSMManagedInstanceCore"
+  default     = "AmazonSSMManagedInstanceCore"
   description = "The profile to assign to the instance. This one is for SSM"
 }
 

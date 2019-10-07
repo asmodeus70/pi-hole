@@ -11,17 +11,17 @@ data "aws_ami" "ubuntu" {
     values = ["hvm"]
   }
 
-  owners   = ["099720109477"]
+  owners = ["099720109477"]
 }
 
 resource "aws_instance" "pi-hole" {
-  ami                                  = data.aws_ami.ubuntu.id
-  instance_type                        = var.instance_type
-  key_name                             = var.key_name
-  associate_public_ip_address          = var.public_ip
-  vpc_security_group_ids               = [var.sg]
-  subnet_id                            = var.subnet
-  availability_zone                    = var.zone
+  ami                         = data.aws_ami.ubuntu.id
+  instance_type               = var.instance_type
+  key_name                    = var.key_name
+  associate_public_ip_address = var.public_ip
+  vpc_security_group_ids      = [var.sg]
+  subnet_id                   = var.subnet
+  availability_zone           = var.zone
 
   tags = {
     Createdby            = "Terraform"
