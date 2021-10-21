@@ -46,7 +46,7 @@ resource "aws_eip" "eip" {
 
 resource "aws_eip_association" "eip-asoc" {
   instance_id   = module.ec2.instance_id
-  allocation_id = aws_eip.id
+  allocation_id = aws_eip.eip.id
 
 }
 
