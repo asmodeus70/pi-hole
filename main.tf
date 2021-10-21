@@ -52,6 +52,6 @@ resource "aws_eip_association" "eip-asoc" {
 
 resource "null_resource" "ansible" {
   provisioner "local-exec" {
-    command = "ansible-playbook -i module.ec2.instance_ip_addr ./ansible/main.yml"
+    command = "ansible-playbook -i module.ec2.instance_ip_addr ./ansible/main.yaml"
   }
 }
